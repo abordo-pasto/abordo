@@ -1,6 +1,6 @@
 # Requisitos
 
-Cada requisito sale de una historia de usuario (ver `01-historias-de-usuario.md`).
+Cada requisito sale de una historia de usuario (ver [historias/00-resumen.md](historias/00-resumen.md)).
 
 ## Requisitos funcionales
 

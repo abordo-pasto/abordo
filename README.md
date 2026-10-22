@@ -9,7 +9,7 @@ Proyecto final de Diseño de Software.
 abordo/
 ├── README.md
 ├── docs/
-│   ├── 01-historias-de-usuario.md   Historias con criterios de aceptación
+│   ├── historias/                   Una historia por archivo (INVEST + Gherkin) y 00-resumen.md
 │   └── 02-requisitos.md             Requisitos funcionales y no funcionales
 ├── diagramas/                       Proyecto de Visual Paradigm (.vpp) y las imágenes exportadas
 │   ├── 0-contexto
