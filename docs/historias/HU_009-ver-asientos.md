@@ -4,7 +4,7 @@
 **Quiero** ver el mapa de asientos de una salida
 **Para** escoger dónde sentarme
 
-**Prioridad:** Alta · **Estimación:** 2 puntos · **Requisitos:** RF_009
+**Prioridad:** Media (funcionalidad extra) · **Estimación:** 2 puntos · **Requisitos:** RF_009
 
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita una salida programada (HU_006); se puede probar con datos iniciales.

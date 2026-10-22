@@ -2,14 +2,14 @@
 
 **Como** pasajero
 **Quiero** comprar un tiquete eligiendo la salida, el asiento y mi tipo de pasajero
-**Para** asegurar mi puesto en el viaje sin hacer fila en la terminal
+**Para** asegurar mi puesto en el viaje que planifiqué sin hacer fila en el punto de transporte
 
-**Prioridad:** Alta · **Estimación:** 5 puntos · **Requisitos:** RF_010, RF_011
+**Prioridad:** Media (funcionalidad extra) · **Estimación:** 5 puntos · **Requisitos:** RF_010, RF_011
 
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita que existan salidas programadas (HU_006); se puede probar con datos de prueba cargados en la base.
 - N — Negotiable: ✅ No dice cómo se guarda ni cómo se calcula por dentro, solo el resultado.
-- V — Valuable: ✅ Es la función principal del sistema para el pasajero.
+- V — Valuable: ✅ Completa la planificación: después de comparar, el pasajero asegura su puesto.
 - E — Estimable: ✅ Las reglas de precio y de asiento están definidas (RN1, RN2, RN3, RN4).
 - S — Small: ✅ Un solo flujo: elegir asiento y pagar el valor calculado.
 - T — Testable: ✅ El precio final y el estado del asiento se pueden verificar con valores exactos.

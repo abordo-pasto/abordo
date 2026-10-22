@@ -1,6 +1,7 @@
 # Abordo
 
-Sistema para consultar y comprar pasajes que salen de la Terminal de Transportes de Pasto.
+Plataforma móvil para la gestión y consulta de información del transporte terrestre en Pasto.
+Centraliza la información de los tres puntos de transporte de la ciudad (Terminal de Transportes, Terminal Mixto y Terminal Torobajo) para consultar y comparar rutas, destinos, horarios, tarifas y empresas, planificar el viaje y, como extra, comprar el tiquete.
 Proyecto final de Diseño de Software.
 
 ## Estructura del repositorio
@@ -26,7 +27,7 @@ abordo/
 │       └── dto/                     Datos de entrada y salida
 ├── database/                        Datos de prueba para MongoDB
 ├── postman/                         Colección para probar los endpoints
-└── frontend/                        Opcional
+└── frontend/                        Opcional (app móvil)
 ```
 
 ## Tecnologías

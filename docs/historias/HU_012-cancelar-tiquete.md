@@ -4,7 +4,7 @@
 **Quiero** cancelar un tiquete que ya no voy a usar
 **Para** liberar el asiento si no voy a viajar
 
-**Prioridad:** Media · **Estimación:** 2 puntos · **Requisitos:** RF_013
+**Prioridad:** Baja (funcionalidad extra) · **Estimación:** 2 puntos · **Requisitos:** RF_013
 
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita un tiquete comprado (HU_010); se puede probar con datos iniciales.

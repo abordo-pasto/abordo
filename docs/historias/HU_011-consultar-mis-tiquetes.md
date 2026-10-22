@@ -4,7 +4,7 @@
 **Quiero** ver la lista de mis tiquetes
 **Para** recordar la fecha, la hora, el asiento y el valor de mis viajes
 
-**Prioridad:** Media · **Estimación:** 2 puntos · **Requisitos:** RF_012
+**Prioridad:** Baja (funcionalidad extra) · **Estimación:** 2 puntos · **Requisitos:** RF_012
 
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita tiquetes comprados (HU_010); se puede probar con datos iniciales.
