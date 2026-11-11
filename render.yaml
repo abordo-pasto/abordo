@@ -1,0 +1,18 @@
+# Despliegue del backend en Render (plan gratuito) con Docker.
+# La base de datos es MongoDB Atlas (plan gratuito M0); su cadena de conexión va en MONGODB_URI.
+services:
+  - type: web
+    name: abordo-backend
+    runtime: docker
+    rootDir: backend
+    plan: free
+    healthCheckPath: /api/estado
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGENES
+        value: https://*.vercel.app,http://localhost:5173
+      - key: DATOS_PRUEBA
+        value: "true"

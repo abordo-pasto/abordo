@@ -14,6 +14,7 @@ Proyecto final de Diseño de Software.
 - [Ejecución local](#ejecución-local)
 - [Cuentas de prueba](#cuentas-de-prueba)
 - [Pruebas](#pruebas)
+- [Despliegue](#despliegue)
 - [Endpoints REST](#endpoints-rest)
 - [Estructura del repositorio](#estructura-del-repositorio)
 
@@ -130,6 +131,16 @@ mvn test
 - [postman/Abordo.postman_collection.json](postman/Abordo.postman_collection.json): 58 peticiones organizadas por historia de usuario, con sus validaciones. Se importa en Postman y se ejecuta con el Runner, en orden.
 
 GitHub Actions compila el backend y el frontend, corre las pruebas y ejecuta la colección de Postman contra un MongoDB real en cada push.
+
+## Despliegue
+
+| Parte | Plataforma | Configuración |
+|---|---|---|
+| Backend (Docker) | Render | `render.yaml` y `backend/Dockerfile` |
+| Base de datos | MongoDB Atlas (M0 gratuito) | Cadena de conexión en la variable `MONGODB_URI` |
+| Frontend | Vercel | Carpeta raíz `frontend` y variable `VITE_API_URL` con la URL del backend |
+
+Cada push a `main` vuelve a desplegar el backend y el frontend.
 
 ## Endpoints REST
 
