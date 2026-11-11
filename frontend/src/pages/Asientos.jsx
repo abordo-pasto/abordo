@@ -103,8 +103,12 @@ export default function Asientos() {
               ))}
             </div>
             <label>Número de tarjeta</label>
-            <input inputMode="numeric" value={tarjeta} onChange={(e) => setTarjeta(e.target.value)} placeholder="4111 1111 1111 1111" required />
-            <p className="tenue pequeño">Pago simulado: las tarjetas que terminan en 0000 se rechazan.</p>
+            <input inputMode="numeric" value={tarjeta} onChange={(e) => setTarjeta(e.target.value.replace(/[^\d ]/g, ''))}
+              placeholder="16 dígitos" maxLength={19} pattern="(\d\s?){16}" title="La tarjeta debe tener 16 dígitos" required />
+            <p className="tenue pequeño">
+              Pago simulado: se aprueba cualquier tarjeta de 16 dígitos, menos las que terminan en 0000.{' '}
+              <button type="button" className="enlace" onClick={() => setTarjeta('4111 1111 1111 1111')}>Usar tarjeta de prueba</button>
+            </p>
             {precio !== null && (
               <div className="fila total"><span>Total</span><strong>{pesos(precio)}</strong></div>
             )}
