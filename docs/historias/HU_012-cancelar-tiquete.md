@@ -6,6 +6,10 @@
 
 **Prioridad:** Baja (funcionalidad extra) · **Estimación:** 2 puntos · **Requisitos:** RF_013
 
+**Mockup**
+
+![Mockup HU_012](../mockups/HU_012.png)
+
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita un tiquete comprado (HU_010); se puede probar con datos iniciales.
 - N — Negotiable: ✅ No impone cómo se registra la cancelación.
@@ -59,4 +63,4 @@ Característica: Cancelación de tiquete
 ```
 
 **Supuestos / preguntas abiertas**
-- No hay reembolso de dinero porque el sistema no maneja pagos reales.
+- El reembolso del dinero no hace parte del alcance; se gestiona en la taquilla de la empresa.

@@ -6,6 +6,10 @@
 
 **Prioridad:** Alta · **Estimación:** 2 puntos · **Requisitos:** RF_014
 
+**Mockup**
+
+![Mockup HU_013](../mockups/HU_013.png)
+
 **Validación INVEST**
 - I — Independent: ✅ No depende de otra historia.
 - N — Negotiable: ✅ No impone cómo se guardan ni cómo se muestran los puntos.

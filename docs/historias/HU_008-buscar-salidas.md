@@ -1,10 +1,14 @@
 ### HU_008: Buscar salidas
 
-**Como** pasajero
+**Como** viajero (visitante o pasajero)
 **Quiero** buscar salidas por destino y fecha, y si quiero filtrar por punto de transporte
 **Para** planificar mi viaje sabiendo desde dónde salgo, a qué hora y cuánto cuesta
 
 **Prioridad:** Alta · **Estimación:** 3 puntos · **Requisitos:** RF_008
+
+**Mockup**
+
+![Mockup HU_008](../mockups/HU_008.png)
 
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita salidas programadas (HU_006); se puede probar con datos iniciales.
@@ -27,30 +31,30 @@ Característica: Búsqueda de salidas
       | Terminal de Transportes de Pasto | Supertaxis   | 14:00 | $45.000     | 3               |
 
   Escenario: Buscar ordenando por hora
-    Cuando el pasajero busca salidas a "Cali" el "2026-11-20"
+    Cuando el viajero busca salidas a "Cali" el "2026-11-20"
     Entonces ve 3 salidas en este orden: "08:00", "14:00", "20:00"
     Y cada una muestra punto de salida, empresa, hora, hora estimada de llegada, precio base y asientos libres
 
   Escenario: Buscar ordenando por precio
-    Cuando el pasajero busca salidas a "Cali" el "2026-11-20" ordenando por precio
+    Cuando el viajero busca salidas a "Cali" el "2026-11-20" ordenando por precio
     Entonces ve las salidas en este orden: $45.000, $50.000, $55.000
 
   Escenario: El resultado indica de qué punto sale
     Dado que hay una salida a "Sandoná" el "2026-11-20" a las "07:00" desde "Terminal Torobajo"
-    Cuando el pasajero busca salidas a "Sandoná" el "2026-11-20"
+    Cuando el viajero busca salidas a "Sandoná" el "2026-11-20"
     Entonces ve la salida de las "07:00" con punto de salida "Terminal Torobajo"
 
   Escenario: Filtrar por punto de transporte
-    Cuando el pasajero busca salidas a "Cali" el "2026-11-20" solo desde "Terminal Mixto"
+    Cuando el viajero busca salidas a "Cali" el "2026-11-20" solo desde "Terminal Mixto"
     Entonces ve el mensaje "No hay salidas para esa fecha"
 
   Escenario: Fecha sin salidas
-    Cuando el pasajero busca salidas a "Cali" el "2026-11-21"
+    Cuando el viajero busca salidas a "Cali" el "2026-11-21"
     Entonces ve el mensaje "No hay salidas para esa fecha"
 
   Escenario: No se muestran salidas que ya pasaron
     Dado que hoy es "2026-11-20" y son las "15:00"
-    Cuando el pasajero busca salidas a "Cali" el "2026-11-20"
+    Cuando el viajero busca salidas a "Cali" el "2026-11-20"
     Entonces solo ve la salida de las "20:00"
 ```
 

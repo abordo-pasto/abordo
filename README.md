@@ -10,7 +10,8 @@ Proyecto final de Diseño de Software.
 abordo/
 ├── README.md
 ├── docs/
-│   ├── historias/                   Una historia por archivo (INVEST + Gherkin) y 00-resumen.md
+│   ├── historias/                   Una historia por archivo (INVEST + Gherkin + mockup) y 00-resumen.md
+│   ├── mockups/                     Pantallas de la app móvil para cada historia
 │   └── 02-requisitos.md             Requisitos funcionales y no funcionales
 ├── diagramas/                       Proyecto de Visual Paradigm (.vpp) y las imágenes exportadas
 │   ├── 0-contexto
@@ -29,6 +30,9 @@ abordo/
 ├── postman/                         Colección para probar los endpoints
 └── frontend/                        Opcional (app móvil)
 ```
+
+## Documentación
+La especificación de requisitos (SRS, IEEE 830) con las historias de usuario y sus mockups está en la [wiki](https://github.com/abordo-pasto/abordo/wiki).
 
 ## Tecnologías
 Java 17, Spring Boot 3, MongoDB, Postman, Visual Paradigm.

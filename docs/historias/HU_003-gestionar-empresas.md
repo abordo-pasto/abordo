@@ -2,9 +2,13 @@
 
 **Como** administrador
 **Quiero** registrar, consultar, editar y eliminar las empresas transportadoras (nombre, NIT y teléfono)
-**Para** mantener actualizada la lista de empresas que operan en la terminal
+**Para** mantener actualizada la lista de empresas que operan en los puntos de transporte de Pasto
 
 **Prioridad:** Alta · **Estimación:** 2 puntos · **Requisitos:** RF_003
+
+**Mockup**
+
+![Mockup HU_003](../mockups/HU_003.png)
 
 **Validación INVEST**
 - I — Independent: ✅ No depende de otra historia.
@@ -49,3 +53,4 @@ Característica: Gestión de empresas transportadoras
 
 **Supuestos / preguntas abiertas**
 - Solo el administrador puede gestionar empresas.
+- Cada empresa trabaja en la app por medio de sus operadores (HU_016).

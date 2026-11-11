@@ -1,10 +1,14 @@
 ### HU_001: Registrarse como pasajero
 
-**Como** pasajero
+**Como** visitante (persona que usa la app sin cuenta)
 **Quiero** crear una cuenta con mi nombre, documento, correo y contraseña
-**Para** poder comprar tiquetes a mi nombre
+**Para** quedar registrado como pasajero y poder comprar tiquetes a mi nombre
 
 **Prioridad:** Alta · **Estimación:** 3 puntos · **Requisitos:** RF_001
+
+**Mockup**
+
+![Mockup HU_001](../mockups/HU_001.png)
 
 **Validación INVEST**
 - I — Independent: ✅ No depende de ninguna otra historia.
@@ -51,4 +55,4 @@ Característica: Registro de pasajero
 
 **Supuestos / preguntas abiertas**
 - La contraseña debe tener mínimo 8 caracteres (no se pidió más complejidad).
-- Solo los pasajeros se registran solos; los administradores se crean con los datos iniciales del sistema.
+- Solo los pasajeros se registran solos. Las cuentas de los operadores de empresa las crea el administrador (HU_016) y la del administrador viene en los datos iniciales del sistema.

@@ -6,6 +6,10 @@
 
 **Prioridad:** Baja (funcionalidad extra) · **Estimación:** 2 puntos · **Requisitos:** RF_012
 
+**Mockup**
+
+![Mockup HU_011](../mockups/HU_011.png)
+
 **Validación INVEST**
 - I — Independent: ⚠️ Necesita tiquetes comprados (HU_010); se puede probar con datos iniciales.
 - N — Negotiable: ✅ No impone cómo se muestra la lista.
