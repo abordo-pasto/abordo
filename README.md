@@ -40,6 +40,7 @@ Las historias de usuario, con criterios de aceptación y mockups, están en [doc
 
 | Capa | Tecnología |
 |---|---|
+| Frontend | React 18 + Vite, diseño móvil (mismas pantallas de los mockups) |
 | Backend | Java 17, Spring Boot 3 (Web, Data MongoDB, Security, Validation) |
 | Base de datos | MongoDB |
 | Seguridad | JWT y contraseñas con BCrypt |
@@ -76,7 +77,7 @@ Los diagramas (contexto, componentes, clases, clases por capas y despliegue) est
 
 ## Ejecución local
 
-**Requisitos:** Java 17 y Maven, y MongoDB (o Docker).
+**Requisitos:** Java 17 y Maven, MongoDB (o Docker) y Node.js 20 o superior para el frontend.
 
 Con Docker (levanta MongoDB y el backend):
 
@@ -91,7 +92,16 @@ cd backend
 mvn spring-boot:run
 ```
 
-La API queda en `http://localhost:8080` y Swagger en `http://localhost:8080/swagger-ui.html`. La primera vez que arranca carga los tres puntos de transporte, empresas, buses, rutas y las salidas de la próxima semana.
+Frontend (con el backend corriendo):
+
+```bash
+cd frontend
+cp .env.example .env
+npm install
+npm run dev
+```
+
+La app queda en `http://localhost:5173`. La API queda en `http://localhost:8080` y Swagger en `http://localhost:8080/swagger-ui.html`. La primera vez que arranca carga los tres puntos de transporte, empresas, buses, rutas y las salidas de la próxima semana.
 
 Variables de entorno (ver `backend/.env.example`): `MONGODB_URI`, `JWT_SECRET`, `CORS_ORIGENES` y `DATOS_PRUEBA`.
 
@@ -119,7 +129,7 @@ mvn test
 - `TiqueteServicioTest`: compra con pago aprobado y rechazado, simulando la pasarela con Mockito.
 - [postman/Abordo.postman_collection.json](postman/Abordo.postman_collection.json): 58 peticiones organizadas por historia de usuario, con sus validaciones. Se importa en Postman y se ejecuta con el Runner, en orden.
 
-GitHub Actions compila, corre las pruebas y ejecuta la colección de Postman contra un MongoDB real en cada push.
+GitHub Actions compila el backend y el frontend, corre las pruebas y ejecuta la colección de Postman contra un MongoDB real en cada push.
 
 ## Endpoints REST
 
@@ -172,7 +182,10 @@ abordo/
 │   ├── historias/               Historias de usuario (INVEST + Gherkin)
 │   ├── mockups/                 Pantallas de la app para cada historia
 │   └── 02-requisitos.md         Requisitos funcionales y no funcionales
-├── frontend/                    App móvil
+├── frontend/                    App móvil (React + Vite)
+│   └── src/
+│       ├── pages/               Inicio, buscar, comparar, asientos, tiquetes, cuenta y paneles
+│       └── components/          Barra inferior, tarjetas y formularios
 ├── postman/                     Colección de Postman
 ├── .github/workflows/ci.yml     Compilación, pruebas y colección de Postman
 └── docker-compose.yml           MongoDB + backend en local
