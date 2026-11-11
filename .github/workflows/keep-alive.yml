@@ -1,0 +1,21 @@
+name: Mantener activo el backend
+
+# Render apaga el plan gratuito tras 15 minutos sin uso. Este workflow lo visita
+# cada 10 minutos entre las 6:00 a. m. y las 10:00 p. m. de Colombia (11:00 a 03:00 UTC).
+on:
+  schedule:
+    - cron: "*/10 11-23 * * *"
+    - cron: "*/10 0-2 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Visitar la API
+        run: |
+          for i in 1 2 3; do
+            curl -fsS --max-time 90 https://abordo-backend-myc1.onrender.com/api/estado && exit 0
+            sleep 20
+          done
+          exit 1

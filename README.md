@@ -6,6 +6,12 @@ Abordo centraliza la información de los tres puntos de transporte de la ciudad 
 
 Proyecto final de Diseño de Software.
 
+| API en la nube | Documentación de la API (Swagger) | Wiki |
+|:---:|:---:|:---:|
+| [abordo-backend-myc1.onrender.com](https://abordo-backend-myc1.onrender.com/api/puntos) | [Swagger](https://abordo-backend-myc1.onrender.com/swagger-ui.html) | [Ver wiki](https://github.com/abordo-pasto/abordo/wiki) |
+
+> El backend está en el plan gratuito de Render. El workflow `keep-alive.yml` lo visita cada 10 minutos de 6:00 a. m. a 10:00 p. m. (hora de Colombia); fuera de ese horario la primera petición puede tardar cerca de un minuto.
+
 ## Contenido
 
 - [Funcionalidades](#funcionalidades)
