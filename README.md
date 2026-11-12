@@ -17,6 +17,7 @@ Proyecto final de Diseño de Software.
 - [Funcionalidades](#funcionalidades)
 - [Tecnologías](#tecnologías)
 - [Arquitectura](#arquitectura)
+- [Capturas](#capturas)
 - [Ejecución local](#ejecución-local)
 - [Cuentas de prueba](#cuentas-de-prueba)
 - [Pruebas](#pruebas)
@@ -80,7 +81,45 @@ Ejemplos en el código:
 - **Polimorfismo:** `TarifaGeneral`, `TarifaEstudiante` y `TarifaAdultoMayor` implementan `CalculadoraTarifa`.
 - **Indirección:** `TiqueteServicio` usa la interfaz `PasarelaPagos`, no la pasarela concreta.
 
-Los diagramas (contexto, componentes, clases, clases por capas y despliegue) están en [diagramas](diagramas).
+### Diagramas (modelo 4+1)
+
+Los diagramas se hicieron en Visual Paradigm y salen de las historias de usuario. El detalle de cada uno está en [diagramas/README.md](diagramas/README.md).
+
+**Vista de contexto (nivel 0):** Abordo con sus cinco actores externos.
+
+![Vista de contexto](diagramas/vista-contexto.png)
+
+**Vista funcional:** interfaces que ofrece el sistema.
+
+![Vista funcional](diagramas/vista-funcional.png)
+
+**Vista lógica:** clases del dominio con sus asociaciones, multiplicidades y patrones GRASP.
+
+![Vista lógica](diagramas/vista-logica.png)
+
+**Vista de desarrollo:** clases por capas (Controller, Service, Repository y modelo de dominio).
+
+![Vista de desarrollo](diagramas/vista-desarrollo.png)
+
+**Vista de despliegue:** Vercel, Render, MongoDB Atlas y GitHub.
+
+![Vista de despliegue](diagramas/vista-despliegue.png)
+
+**Escenarios (diagramas de secuencia):** comprar tiquete (HU_010) y buscar salidas (HU_008).
+
+![Secuencia comprar tiquete](diagramas/secuencia-comprar-tiquete.png)
+
+![Secuencia buscar salidas](diagramas/secuencia-buscar-salidas.png)
+
+## Capturas
+
+| Inicio | Punto de transporte | Salidas | Comparar |
+|:---:|:---:|:---:|:---:|
+| ![Inicio](docs/capturas/01-inicio.png) | ![Punto](docs/capturas/03-punto-de-transporte.png) | ![Salidas](docs/capturas/04-salidas.png) | ![Comparar](docs/capturas/05-comparar.png) |
+| **Asientos y pago** | **Mis tiquetes** | **Panel del operador** | **Panel del administrador** |
+| ![Asientos](docs/capturas/06-asientos-y-pago.png) | ![Tiquetes](docs/capturas/07-mis-tiquetes.png) | ![Operador](docs/capturas/08-panel-operador.png) | ![Administrador](docs/capturas/10-panel-administrador.png) |
+
+Todas las capturas están en [docs/capturas](docs/capturas).
 
 ## Ejecución local
 
@@ -194,17 +233,18 @@ abordo/
 │       ├── exception/           Manejo de errores
 │       └── config/              Seguridad, Swagger y datos de prueba
 ├── database/                    Descripción de las colecciones de MongoDB
-├── diagramas/                   Proyecto de Visual Paradigm e imágenes exportadas
+├── diagramas/                   Diagramas exportados de Visual Paradigm
 ├── docs/
 │   ├── historias/               Historias de usuario (INVEST + Gherkin)
 │   ├── mockups/                 Pantallas de la app para cada historia
+│   ├── capturas/                Capturas de la app funcionando
 │   └── 02-requisitos.md         Requisitos funcionales y no funcionales
 ├── frontend/                    App móvil (React + Vite)
 │   └── src/
 │       ├── pages/               Inicio, buscar, comparar, asientos, tiquetes, cuenta y paneles
 │       └── components/          Barra inferior, tarjetas y formularios
 ├── postman/                     Colección de Postman
-├── .github/workflows/ci.yml     Compilación, pruebas y colección de Postman
+├── .github/workflows/           CI (compilación, pruebas y Postman) y keep-alive del backend
 └── docker-compose.yml           MongoDB + backend en local
 ```
 
