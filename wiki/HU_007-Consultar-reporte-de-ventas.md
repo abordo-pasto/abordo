@@ -1,5 +1,7 @@
 # HU_007 – Consultar reporte de ventas
 
+🔗 Issue en GitHub: [#7](https://github.com/abordo-pasto/abordo/issues/7)
+
 | Identificación | Título |
 |---|---|
 | HU_007 | Consultar reporte de ventas |

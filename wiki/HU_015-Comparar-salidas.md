@@ -1,5 +1,7 @@
 # HU_015 – Comparar salidas
 
+🔗 Issue en GitHub: [#15](https://github.com/abordo-pasto/abordo/issues/15)
+
 | Identificación | Título |
 |---|---|
 | HU_015 | Comparar salidas |

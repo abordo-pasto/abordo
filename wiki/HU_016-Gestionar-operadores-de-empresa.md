@@ -1,5 +1,7 @@
 # HU_016 – Gestionar operadores de empresa
 
+🔗 Issue en GitHub: [#16](https://github.com/abordo-pasto/abordo/issues/16)
+
 | Identificación | Título |
 |---|---|
 | HU_016 | Gestionar operadores de empresa |

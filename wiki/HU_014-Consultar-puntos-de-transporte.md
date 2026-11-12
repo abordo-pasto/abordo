@@ -1,5 +1,7 @@
 # HU_014 – Consultar puntos de transporte
 
+🔗 Issue en GitHub: [#14](https://github.com/abordo-pasto/abordo/issues/14)
+
 | Identificación | Título |
 |---|---|
 | HU_014 | Consultar puntos de transporte |

@@ -1,5 +1,7 @@
 # HU_006 – Programar salidas
 
+🔗 Issue en GitHub: [#6](https://github.com/abordo-pasto/abordo/issues/6)
+
 | Identificación | Título |
 |---|---|
 | HU_006 | Programar salidas |

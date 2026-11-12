@@ -1,5 +1,7 @@
 # HU_002 – Iniciar sesión
 
+🔗 Issue en GitHub: [#2](https://github.com/abordo-pasto/abordo/issues/2)
+
 | Identificación | Título |
 |---|---|
 | HU_002 | Iniciar sesión |

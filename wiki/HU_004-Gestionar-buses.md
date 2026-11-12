@@ -1,5 +1,7 @@
 # HU_004 – Gestionar buses
 
+🔗 Issue en GitHub: [#4](https://github.com/abordo-pasto/abordo/issues/4)
+
 | Identificación | Título |
 |---|---|
 | HU_004 | Gestionar buses |

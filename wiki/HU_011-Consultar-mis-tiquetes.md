@@ -1,5 +1,7 @@
 # HU_011 – Consultar mis tiquetes
 
+🔗 Issue en GitHub: [#11](https://github.com/abordo-pasto/abordo/issues/11)
+
 | Identificación | Título |
 |---|---|
 | HU_011 | Consultar mis tiquetes |
