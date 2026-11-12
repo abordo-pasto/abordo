@@ -264,7 +264,8 @@ abordo/
 │   └── src/
 │       ├── pages/               Inicio, buscar, comparar, asientos, tiquetes, cuenta y paneles
 │       └── components/          Barra inferior, tarjetas y formularios
-├── postman/                     Colección de Postman
+├── postman/                     Colección y entornos de Postman (nube y local)
+├── wiki/                        Copia de las páginas de la wiki
 ├── .github/workflows/           CI (compilación, pruebas y Postman) y keep-alive del backend
 └── docker-compose.yml           MongoDB + backend en local
 ```
