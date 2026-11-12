@@ -1,6 +1,6 @@
 # HU_008 – Buscar salidas
 
-🔗 Issue en GitHub: [#8](https://github.com/abordo-pasto/abordo/issues/8)
+🔗 Issue en GitHub: [#9](https://github.com/abordo-pasto/abordo/issues/9)
 
 | Identificación | Título |
 |---|---|

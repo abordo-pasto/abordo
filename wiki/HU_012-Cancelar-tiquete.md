@@ -1,6 +1,6 @@
 # HU_012 – Cancelar tiquete
 
-🔗 Issue en GitHub: [#12](https://github.com/abordo-pasto/abordo/issues/12)
+🔗 Issue en GitHub: [#13](https://github.com/abordo-pasto/abordo/issues/13)
 
 | Identificación | Título |
 |---|---|

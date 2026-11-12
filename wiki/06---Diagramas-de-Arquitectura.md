@@ -53,3 +53,16 @@ El navegador descarga la SPA desde **Vercel** y consume la API REST en **Render*
 | Fabricación pura | `FabricaTarifas` | Elige la calculadora; no es un concepto del dominio |
 | Indirección / Variaciones protegidas | `PasarelaPagos` (interfaz) y `PasarelaPagosSimulada` | La venta no depende del proveedor de pagos |
 | Bajo acoplamiento / Alta cohesión | Capas controller, service, repository | Cada capa tiene una sola responsabilidad |
+
+## Patrones de diseño (GoF y de arquitectura)
+
+| Patrón | Dónde | Para qué |
+|---|---|---|
+| Strategy | `CalculadoraTarifa` con `TarifaGeneral`, `TarifaEstudiante`, `TarifaAdultoMayor` | Cambiar la regla de precio según el tipo de pasajero sin `if` en la venta |
+| Simple Factory | `FabricaTarifas.para(tipo)` | Un solo lugar decide qué estrategia de tarifa se usa |
+| Repository | `*Repository` (Spring Data `MongoRepository`) | El servicio guarda y consulta sin conocer MongoDB |
+| DTO | paquete `dto` (`*Request` / `*Response`) | La API no expone las entidades del dominio |
+| Inyección de dependencias | constructores de servicios y controladores; `Clock` en `RelojConfig` | Bajo acoplamiento y pruebas con Mockito y hora fija |
+| Chain of Responsibility | `FiltroJwt` dentro de la cadena de filtros de Spring Security | Validar el token antes de llegar al controlador |
+| Manejador global de errores | `ManejadorErrores` (`@RestControllerAdvice`) | Respuestas de error iguales en toda la API |
+| Arquitectura en capas | controller → service → repository + modelo | Cada capa con una sola responsabilidad |

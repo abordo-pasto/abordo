@@ -1,6 +1,6 @@
 # HU_009 – Ver asientos disponibles
 
-🔗 Issue en GitHub: [#9](https://github.com/abordo-pasto/abordo/issues/9)
+🔗 Issue en GitHub: [#10](https://github.com/abordo-pasto/abordo/issues/10)
 
 | Identificación | Título |
 |---|---|

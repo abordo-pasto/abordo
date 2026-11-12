@@ -1,6 +1,6 @@
 # HU_001 – Registrarse como pasajero
 
-🔗 Issue en GitHub: [#1](https://github.com/abordo-pasto/abordo/issues/1)
+🔗 Issue en GitHub: [#2](https://github.com/abordo-pasto/abordo/issues/2)
 
 | Identificación | Título |
 |---|---|

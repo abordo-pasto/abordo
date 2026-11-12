@@ -1,6 +1,6 @@
 # HU_010 – Comprar tiquete
 
-🔗 Issue en GitHub: [#10](https://github.com/abordo-pasto/abordo/issues/10)
+🔗 Issue en GitHub: [#11](https://github.com/abordo-pasto/abordo/issues/11)
 
 | Identificación | Título |
 |---|---|

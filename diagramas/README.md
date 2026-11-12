@@ -20,3 +20,14 @@ Hechos en Visual Paradigm Community Edition. Cada diagrama sale de las historias
 - **Polimorfismo:** `CalculadoraTarifa` con `TarifaGeneral`, `TarifaEstudiante` y `TarifaAdultoMayor`.
 - **Fabricación pura:** `FabricaTarifas` elige la calculadora según el tipo de pasajero.
 - **Variaciones protegidas / Indirección:** `CalculadoraTarifa` y `PasarelaPagos` aíslan lo que puede cambiar (tarifas y proveedor de pagos).
+- **Bajo acoplamiento / Alta cohesión:** los controladores nunca usan repositorios; cada capa (controller, service, repository) tiene una sola responsabilidad y las dependencias se inyectan por constructor.
+
+## Patrones de diseño (GoF y de arquitectura)
+
+- **Strategy:** `CalculadoraTarifa` y sus tres implementaciones.
+- **Simple Factory:** `FabricaTarifas.para(tipo)`.
+- **Repository:** interfaces `*Repository` de Spring Data.
+- **DTO:** paquete `dto` (`*Request` / `*Response`).
+- **Inyección de dependencias:** servicios, controladores y el `Clock` de `RelojConfig`.
+- **Chain of Responsibility:** `FiltroJwt` en la cadena de filtros de Spring Security.
+- **Manejador global de errores:** `ManejadorErrores` (`@RestControllerAdvice`).

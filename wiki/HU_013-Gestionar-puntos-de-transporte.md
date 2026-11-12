@@ -1,6 +1,6 @@
 # HU_013 – Gestionar puntos de transporte
 
-🔗 Issue en GitHub: [#13](https://github.com/abordo-pasto/abordo/issues/13)
+🔗 Issue en GitHub: [#14](https://github.com/abordo-pasto/abordo/issues/14)
 
 | Identificación | Título |
 |---|---|

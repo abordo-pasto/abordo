@@ -1,6 +1,6 @@
 # HU_005 – Gestionar rutas
 
-🔗 Issue en GitHub: [#5](https://github.com/abordo-pasto/abordo/issues/5)
+🔗 Issue en GitHub: [#6](https://github.com/abordo-pasto/abordo/issues/6)
 
 | Identificación | Título |
 |---|---|

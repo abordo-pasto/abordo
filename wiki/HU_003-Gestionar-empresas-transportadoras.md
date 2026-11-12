@@ -1,6 +1,6 @@
 # HU_003 – Gestionar empresas transportadoras
 
-🔗 Issue en GitHub: [#3](https://github.com/abordo-pasto/abordo/issues/3)
+🔗 Issue en GitHub: [#4](https://github.com/abordo-pasto/abordo/issues/4)
 
 | Identificación | Título |
 |---|---|
