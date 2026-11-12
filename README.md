@@ -22,6 +22,7 @@ Proyecto final de Diseño de Software.
 - [Cuentas de prueba](#cuentas-de-prueba)
 - [Pruebas](#pruebas)
 - [Despliegue](#despliegue)
+- [Probar la API desplegada](#probar-la-api-desplegada-sin-el-frontend)
 - [Endpoints REST](#endpoints-rest)
 - [Estructura del repositorio](#estructura-del-repositorio)
 
@@ -186,6 +187,26 @@ GitHub Actions compila el backend y el frontend, corre las pruebas y ejecuta la 
 | Frontend | Vercel | Carpeta raíz `frontend` y variable `VITE_API_URL` con la URL del backend |
 
 Cada push a `main` vuelve a desplegar el backend y el frontend.
+
+## Probar la API desplegada (sin el frontend)
+
+El backend desplegado en Render, con la base en MongoDB Atlas, se puede usar directamente, sin pasar por la app. Hay dos formas:
+
+**1. Swagger (desde el navegador)**
+
+1. Abrir [abordo-backend-myc1.onrender.com/swagger-ui.html](https://abordo-backend-myc1.onrender.com/swagger-ui.html). Si el servicio estaba dormido, la primera carga tarda cerca de un minuto.
+2. En `POST /api/auth/login` pulsar **Try it out** y enviar, por ejemplo, `{"correo": "admin@abordo.com", "contrasena": "admin123"}`.
+3. Copiar el `token` de la respuesta, pulsar **Authorize** (arriba a la derecha) y pegarlo.
+4. Desde ahí se puede crear, consultar, editar o eliminar cualquier recurso (puntos, empresas, buses, rutas, salidas, tiquetes, reportes) según el rol de la cuenta.
+
+**2. Postman**
+
+1. Importar `postman/Abordo.postman_collection.json` y el entorno `postman/Abordo-Render.postman_environment.json`.
+2. Escoger el entorno **Abordo - Render (nube)** y ejecutar la colección completa (Run collection) o petición por petición. Las peticiones de inicio de sesión guardan solas los tokens de cada rol.
+
+Para trabajar contra el backend local se usa el entorno `Abordo-Local.postman_environment.json`.
+
+**Hacer un cambio en el backend:** se modifica el código en `backend/`, se prueba en local (`mvn spring-boot:run` con MongoDB de `docker-compose`) y al hacer push a `main` el CI corre las pruebas y Render vuelve a desplegar solo; en unos minutos el cambio queda en la API de la nube.
 
 ## Endpoints REST
 
