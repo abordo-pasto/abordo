@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { api, ESTADO_TIQUETE, fechaCorta, hora, pesos, TIPO_PASAJERO } from '../api';
+import { api, colorEmpresa, ESTADO_TIQUETE, fechaLarga, hora, pesos, TIPO_PASAJERO } from '../api';
 import Encabezado from '../components/Encabezado';
+import Icono from '../components/Icono';
 import { Cargando, Error, Exito, Vacio } from '../components/Mensaje';
 import { useSesion } from '../sesion';
 
@@ -12,7 +13,7 @@ export default function Tiquetes() {
   const [estado, setEstado] = useState('');
   const [tiquetes, setTiquetes] = useState(null);
   const [error, setError] = useState('');
-  const [aviso, setAviso] = useState(state?.comprado ? '¡Compra exitosa! Tu tiquete está activo.' : '');
+  const [aviso, setAviso] = useState(state?.comprado ? '¡Compra exitosa! Tu tiquete está activo. Muestra el código al abordar.' : '');
 
   function cargar() {
     api(`/api/tiquetes${estado ? `?estado=${estado}` : ''}`).then(setTiquetes).catch((e) => setError(e.message));
@@ -37,49 +38,92 @@ export default function Tiquetes() {
 
   if (usuario?.rol !== 'PASAJERO') {
     return (
-      <>
+      <div className="contenedor pagina">
         <Encabezado titulo="Mis tiquetes" />
-        <section className="pagina">
-          <Vacio titulo="Inicia sesión como pasajero" texto="Así verás tus tiquetes comprados." />
-          <Link to="/cuenta" className="boton ancho">Ir a Cuenta</Link>
-        </section>
-      </>
+        <div className="tarjeta">
+          <Vacio icono="tiquete" titulo="Inicia sesión como pasajero" texto="Así verás tus tiquetes comprados y podrás cancelarlos.">
+            <Link to="/cuenta" className="boton">Iniciar sesión</Link>
+          </Vacio>
+        </div>
+      </div>
     );
   }
 
+  const activos = tiquetes?.filter((t) => t.estado === 'ACTIVO') || [];
+  const pagado = activos.reduce((suma, t) => suma + t.precioFinal, 0);
+
   return (
-    <>
-      <Encabezado titulo="Mis tiquetes" />
-      <section className="pagina">
-        <div className="chips">
-          <button className={`chip ${!estado ? 'activo' : ''}`} onClick={() => setEstado('')}>Todos</button>
-          {Object.entries(ESTADO_TIQUETE).map(([clave, texto]) => (
-            <button key={clave} className={`chip ${estado === clave ? 'activo' : ''}`} onClick={() => setEstado(clave)}>{texto}</button>
-          ))}
+    <div className="contenedor pagina">
+      <Encabezado titulo="Mis tiquetes" subtitulo={`Hola, ${usuario.nombre.split(' ')[0]}. Aquí están tus viajes.`}>
+        <Link to="/buscar" className="boton"><Icono nombre="buscar" tam={18} /> Comprar otro</Link>
+      </Encabezado>
+
+      {tiquetes && !estado && (
+        <div className="kpis" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', marginTop: 0 }}>
+          <div className="tarjeta compacta kpi"><span>Tiquetes activos</span><strong>{activos.length}</strong></div>
+          <div className="tarjeta compacta kpi"><span>Total de tiquetes</span><strong>{tiquetes.length}</strong></div>
+          <div className="tarjeta compacta kpi"><span>Pagado en activos</span><strong>{pesos(pagado)}</strong></div>
         </div>
-        <Exito texto={aviso} />
-        <Error texto={error} />
-        {!tiquetes && !error && <Cargando />}
-        {tiquetes?.length === 0 && <Vacio titulo="No tienes tiquetes" texto="Busca una salida y compra tu primer tiquete." />}
+      )}
+
+      <div className="segmentado" role="group" aria-label="Filtrar por estado" style={{ marginBottom: 'var(--e5)' }}>
+        <button className={!estado ? 'activo' : ''} onClick={() => setEstado('')}>Todos</button>
+        {Object.entries(ESTADO_TIQUETE).map(([clave, texto]) => (
+          <button key={clave} className={estado === clave ? 'activo' : ''} onClick={() => setEstado(clave)}>{texto}</button>
+        ))}
+      </div>
+
+      <Exito texto={aviso} />
+      <Error texto={error} />
+      {!tiquetes && !error && <Cargando filas={2} />}
+      {tiquetes?.length === 0 && (
+        <div className="tarjeta">
+          <Vacio icono="tiquete" titulo={estado ? `No tienes tiquetes ${ESTADO_TIQUETE[estado].toLowerCase()}s` : 'No tienes tiquetes'} texto="Busca una salida y compra tu primer tiquete.">
+            <Link to="/buscar" className="boton">Buscar salidas</Link>
+          </Vacio>
+        </div>
+      )}
+      <div className="tiquetes">
         {tiquetes?.map((t) => (
-          <div key={t.id} className="tarjeta tiquete">
-            <div className="fila">
-              <strong>{t.salida.destino}</strong>
+          <article key={t.id} className={`pase ${t.estado !== 'ACTIVO' ? 'inactivo' : ''}`}>
+            <div className="pase-cabeza">
+              <div>
+                <small>Pasto →</small>
+                <strong>{t.salida.destino}</strong>
+              </div>
               <span className={`insignia ${t.estado === 'ACTIVO' ? 'verde' : 'gris'}`}>{ESTADO_TIQUETE[t.estado]}</span>
             </div>
-            <div className="tenue">{fechaCorta(t.salida.fechaHora)} · {hora(t.salida.fechaHora)} → {hora(t.salida.horaEstimadaLlegada)}</div>
-            <div className="tenue">{t.salida.empresa} · {t.salida.puntoTransporte}</div>
-            <div className="fila">
-              <span>Asiento <strong>{t.numeroAsiento}</strong> · {TIPO_PASAJERO[t.tipoPasajero]}</span>
-              <strong>{pesos(t.precioFinal)}</strong>
+            <div className="pase-cuerpo">
+              <div className="pase-horas">
+                <span className="salida-hora">{hora(t.salida.fechaHora)}</span>
+                <span className="salida-linea mayuscula">{fechaLarga(t.salida.fechaHora)}</span>
+                <span className="salida-hora">{hora(t.salida.horaEstimadaLlegada)}</span>
+              </div>
+              <div><small>Empresa</small><strong className="salida-empresa"><i className="marca-empresa" style={{ background: colorEmpresa(t.salida.empresa) }} />{t.salida.empresa}</strong></div>
+              <div><small>Asiento</small><strong>{t.numeroAsiento}</strong></div>
+              <div><small>Sale desde</small><strong>{t.salida.puntoTransporte}</strong></div>
+              <div><small>Pasajero</small><strong>{TIPO_PASAJERO[t.tipoPasajero]}</strong></div>
             </div>
-            <div className="fila">
-              <code>{t.codigo}</code>
-              {t.puedeCancelarse && <button className="boton peligro pequeño" onClick={() => cancelar(t)}>Cancelar</button>}
+            <div className="pase-corte" />
+            <div className="pase-pie">
+              <div>
+                <small className="tenue pequeño">Código</small>
+                <div className="codigo">{t.codigo}</div>
+              </div>
+              <div className="barras" aria-hidden="true" />
+              <div style={{ textAlign: 'right' }}>
+                <small className="tenue pequeño">Pagado</small>
+                <div className="negrita" style={{ color: 'var(--tinta)' }}>{pesos(t.precioFinal)}</div>
+              </div>
             </div>
-          </div>
+            {t.puedeCancelarse && (
+              <div style={{ padding: '0 var(--e5) var(--e4)' }}>
+                <button className="boton peligro pequeño ancho" onClick={() => cancelar(t)}>Cancelar tiquete</button>
+              </div>
+            )}
+          </article>
         ))}
-      </section>
-    </>
+      </div>
+    </div>
   );
 }

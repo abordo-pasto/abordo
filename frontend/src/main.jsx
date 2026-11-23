@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { ProveedorSesion } from './sesion';
+import '@fontsource-variable/plus-jakarta-sans';
 import './estilos.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

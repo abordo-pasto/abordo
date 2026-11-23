@@ -1,26 +1,37 @@
+import Icono from './Icono';
+
 export function Error({ texto }) {
-  return texto ? <p className="alerta error">{texto}</p> : null;
+  return texto ? (
+    <div className="alerta error" role="alert"><Icono nombre="info" /> <span>{texto}</span></div>
+  ) : null;
 }
 
 export function Exito({ texto }) {
-  return texto ? <p className="alerta exito">{texto}</p> : null;
+  return texto ? (
+    <div className="alerta exito" role="status"><Icono nombre="check" /> <span>{texto}</span></div>
+  ) : null;
 }
 
-export function Vacio({ titulo, texto }) {
+export function Aviso({ children }) {
+  return <div className="alerta"><Icono nombre="info" /> <span>{children}</span></div>;
+}
+
+export function Vacio({ titulo, texto, icono = 'bus', children }) {
   return (
     <div className="vacio">
-      <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
-        <rect x="8" y="12" width="48" height="34" rx="8" fill="#d6e4f3" />
-        <rect x="14" y="18" width="36" height="12" rx="3" fill="#1060AA" opacity=".8" />
-        <circle cx="20" cy="48" r="6" fill="#4a5568" />
-        <circle cx="44" cy="48" r="6" fill="#4a5568" />
-      </svg>
+      <span className="vacio-icono"><Icono nombre={icono} tam={32} /></span>
       <h3>{titulo}</h3>
       {texto && <p>{texto}</p>}
+      {children}
     </div>
   );
 }
 
-export function Cargando() {
-  return <p className="cargando">Cargando…</p>;
+// Esqueletos mientras responde el servidor (Render puede tardar al despertar)
+export function Cargando({ filas = 3 }) {
+  return (
+    <div className="cargando" aria-busy="true" aria-label="Cargando">
+      {Array.from({ length: filas }, (_, i) => <div key={i} className="esqueleto" />)}
+    </div>
+  );
 }

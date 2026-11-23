@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { api } from '../api';
+import { api, colorEmpresa } from '../api';
 import Encabezado from '../components/Encabezado';
+import Icono from '../components/Icono';
 import { Cargando, Error } from '../components/Mensaje';
 
 // HU_014: detalle del punto con sus empresas y destinos
@@ -15,32 +16,40 @@ export default function DetallePunto() {
   }, [id]);
 
   return (
-    <>
-      <Encabezado titulo={detalle?.punto.nombre || 'Punto de transporte'} atras />
-      <section className="pagina">
-        <Error texto={error} />
-        {!detalle && !error && <Cargando />}
-        {detalle && (
-          <>
-            <div className="tarjeta">
-              <p><span className="tenue">Dirección</span><br />{detalle.punto.direccion}</p>
-              <p><span className="tenue">Horario</span><br />{detalle.punto.horarioAtencion}</p>
-              <p><span className="tenue">Atiende</span><br />{detalle.punto.zonaQueAtiende}</p>
-            </div>
-            <h2>Empresas</h2>
+    <div className="contenedor pagina">
+      <Encabezado atras titulo={detalle?.punto.nombre || 'Punto de transporte'} subtitulo={detalle?.punto.zonaQueAtiende} />
+      <Error texto={error} />
+      {!detalle && !error && <Cargando filas={2} />}
+      {detalle && (
+        <>
+          <div className="tarjeta ficha-punto">
+            <div className="punto-dato"><span className="etiqueta"><Icono nombre="pin" tam={16} /> Dirección</span><strong>{detalle.punto.direccion}</strong></div>
+            <div className="punto-dato"><span className="etiqueta"><Icono nombre="reloj" tam={16} /> Horario</span><strong>{detalle.punto.horarioAtencion}</strong></div>
+            <div className="punto-dato"><span className="etiqueta"><Icono nombre="ruta" tam={16} /> Atiende</span><strong>{detalle.punto.zonaQueAtiende || '—'}</strong></div>
+          </div>
+
+          <section className="seccion">
+            <div className="seccion-titulo"><h2>Empresas que salen de aquí</h2></div>
             <div className="chips">
-              {detalle.empresas.length ? detalle.empresas.map((e) => <span key={e} className="chip">{e}</span>) : <p className="tenue">Sin empresas registradas.</p>}
+              {detalle.empresas.length ? detalle.empresas.map((e) => (
+                <span key={e} className="chip"><i className="marca-empresa" style={{ background: colorEmpresa(e) }} /> {e}</span>
+              )) : <p className="tenue">Sin empresas registradas.</p>}
             </div>
-            <h2>Destinos</h2>
-            {detalle.destinos.map((d) => (
-              <Link key={d} to={`/buscar?destino=${encodeURIComponent(d)}&puntoId=${detalle.punto.id}`} className="tarjeta fila">
-                <span>{d}</span>
-                <span className="enlace">Ver salidas →</span>
-              </Link>
-            ))}
-          </>
-        )}
-      </section>
-    </>
+          </section>
+
+          <section className="seccion">
+            <div className="seccion-titulo"><h2>Destinos</h2><p>Toca uno para ver sus salidas.</p></div>
+            <div className="destinos">
+              {detalle.destinos.map((d) => (
+                <Link key={d} to={`/buscar?destino=${encodeURIComponent(d)}&puntoId=${detalle.punto.id}`} className="tarjeta compacta destino">
+                  <span>{d}</span>
+                  <Icono nombre="derecha" tam={18} />
+                </Link>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+    </div>
   );
 }

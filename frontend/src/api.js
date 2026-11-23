@@ -39,3 +39,20 @@ export const hoyISO = () => {
 export const SERVICIO = { BASICO: 'Básico', PREFERENCIAL: 'Preferencial', DOS_PISOS: 'Dos pisos' };
 export const TIPO_PASAJERO = { GENERAL: 'General', ESTUDIANTE: 'Estudiante', ADULTO_MAYOR: 'Adulto mayor' };
 export const ESTADO_TIQUETE = { ACTIVO: 'Activo', CANCELADO: 'Cancelado', USADO: 'Usado' };
+
+export const duracion = (minutos) => {
+  const h = Math.floor(minutos / 60);
+  const m = minutos % 60;
+  return h ? `${h} h${m ? ` ${m} min` : ''}` : `${m} min`;
+};
+
+// "lunes 24 de noviembre" a partir de "2026-11-24"
+export const fechaLarga = (fechaISO) => {
+  const [a, m, d] = fechaISO.slice(0, 10).split('-').map(Number);
+  return new Date(a, m - 1, d).toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+};
+
+// Color estable por empresa para identificarla en listas
+const COLORES_EMPRESA = ['#0a57a4', '#e0a800', '#15803d', '#c2410c', '#7c3aed', '#0e7490'];
+export const colorEmpresa = (nombre = '') =>
+  COLORES_EMPRESA[[...nombre].reduce((suma, c) => suma + c.charCodeAt(0), 0) % COLORES_EMPRESA.length];

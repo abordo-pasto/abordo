@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
-import { Cargando, Error, Exito } from './Mensaje';
+import Icono from './Icono';
+import { Cargando, Error, Exito, Vacio } from './Mensaje';
 
 /**
  * Lista con formulario para crear, editar y eliminar registros de un endpoint REST.
  * campos: [{ nombre, etiqueta, tipo: 'text'|'number'|'datetime-local'|'select', opciones: [[valor, texto]] }]
  */
-export default function Gestion({ ruta, campos, mostrar, editable = true, eliminable = true, acciones, alGuardar, nombreNuevo = 'Nuevo' }) {
+export default function Gestion({ titulo, descripcion, ruta, campos, mostrar, editable = true, eliminable = true, acciones, alGuardar, nombreNuevo = 'Nuevo', resumen }) {
   const vacio = Object.fromEntries(campos.map((c) => [c.nombre, c.inicial ?? '']));
   const [items, setItems] = useState(null);
   const [form, setForm] = useState(null);
@@ -19,8 +20,10 @@ export default function Gestion({ ruta, campos, mostrar, editable = true, elimin
 
   function abrir(item) {
     setError('');
+    setAviso('');
     setEditando(item?.id || null);
     setForm(item ? Object.fromEntries(campos.map((c) => [c.nombre, c.desde ? c.desde(item) : item[c.nombre] ?? ''])) : vacio);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   async function guardar(e) {
@@ -62,44 +65,61 @@ export default function Gestion({ ruta, campos, mostrar, editable = true, elimin
 
   return (
     <div>
+      <div className="gestion-cabeza">
+        <div>
+          <h2>{titulo}</h2>
+          {descripcion && <p className="tenue pequeño">{descripcion}</p>}
+        </div>
+        {!form && <button className="boton" onClick={() => abrir(null)}><Icono nombre="mas" tam={18} /> {nombreNuevo}</button>}
+      </div>
       <Exito texto={aviso} />
-      <Error texto={error} />
-      {form ? (
-        <form className="tarjeta" onSubmit={guardar}>
-          <strong>{editando ? 'Editar' : nombreNuevo}</strong>
-          {campos.map((c) => (
-            <div key={c.nombre}>
-              <label>{c.etiqueta}</label>
-              {c.tipo === 'select' ? (
-                <select value={form[c.nombre]} onChange={(e) => setForm({ ...form, [c.nombre]: e.target.value })} required>
-                  <option value="">Seleccione…</option>
-                  {c.opciones.map(([valor, texto]) => <option key={valor} value={valor}>{texto}</option>)}
-                </select>
-              ) : (
-                <input type={c.tipo || 'text'} value={form[c.nombre]} onChange={(e) => setForm({ ...form, [c.nombre]: e.target.value })} required={c.requerido !== false} />
-              )}
-            </div>
-          ))}
-          <div className="fila-form">
-            <button className="boton">Guardar</button>
+      {!form && <Error texto={error} />}
+      {form && (
+        <form className="tarjeta form-gestion" onSubmit={guardar}>
+          <div className="fila" style={{ marginBottom: 'var(--e4)' }}>
+            <h3>{editando ? 'Editar registro' : nombreNuevo}</h3>
+            <button type="button" className="boton fantasma pequeño" aria-label="Cerrar" onClick={() => setForm(null)}><Icono nombre="cerrar" tam={18} /></button>
+          </div>
+          <div className="rejilla-form dos">
+            {campos.map((c) => (
+              <div key={c.nombre} className="campo">
+                <label htmlFor={`campo-${c.nombre}`}>{c.etiqueta}</label>
+                {c.tipo === 'select' ? (
+                  <select id={`campo-${c.nombre}`} value={form[c.nombre]} onChange={(e) => setForm({ ...form, [c.nombre]: e.target.value })} required>
+                    <option value="">Seleccione…</option>
+                    {c.opciones.map(([valor, texto]) => <option key={valor} value={valor}>{texto}</option>)}
+                  </select>
+                ) : (
+                  <input id={`campo-${c.nombre}`} type={c.tipo || 'text'} value={form[c.nombre]}
+                    onChange={(e) => setForm({ ...form, [c.nombre]: e.target.value })} required={c.requerido !== false} />
+                )}
+              </div>
+            ))}
+          </div>
+          <Error texto={error} />
+          <div className="acciones-form">
             <button type="button" className="boton secundario" onClick={() => setForm(null)}>Cancelar</button>
+            <button className="boton">{editando ? 'Guardar cambios' : 'Guardar'}</button>
           </div>
         </form>
-      ) : (
-        <button className="boton ancho" onClick={() => abrir(null)}>+ {nombreNuevo}</button>
       )}
+      {items && resumen?.(items)}
       {!items && !error && <Cargando />}
-      {items?.length === 0 && <p className="tenue centro">Todavía no hay registros.</p>}
-      {items?.map((item) => (
-        <div key={item.id} className="tarjeta">
-          {mostrar(item)}
-          <div className="acciones">
-            {acciones?.(item, accion)}
-            {editable && <button className="enlace" onClick={() => abrir(item)}>Editar</button>}
-            {eliminable && <button className="enlace rojo" onClick={() => eliminar(item)}>Eliminar</button>}
+      {items?.length === 0 && <div className="tarjeta"><Vacio icono="panel" titulo="Todavía no hay registros" texto={`Usa “${nombreNuevo}” para crear el primero.`} /></div>}
+      <div className="registros">
+        {items?.map((item) => (
+          <div key={item.id} className="tarjeta compacta registro">
+            {mostrar(item)}
+            {(editable || eliminable || acciones) && (
+              <div className="acciones">
+                {acciones?.(item, accion)}
+                {editable && <button className="boton fantasma pequeño" onClick={() => abrir(item)}><Icono nombre="editar" tam={16} /> Editar</button>}
+                {eliminable && <button className="boton fantasma pequeño" style={{ color: 'var(--error)' }} onClick={() => eliminar(item)}><Icono nombre="borrar" tam={16} /> Eliminar</button>}
+              </div>
+            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
