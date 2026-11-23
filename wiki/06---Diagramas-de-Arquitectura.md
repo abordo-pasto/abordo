@@ -10,7 +10,7 @@ Abordo es un solo proceso. A su alrededor están los cinco actores externos con 
 
 ## Vista 2 — Funcional (Componentes)
 
-Interfaces que ofrece el sistema por cada grupo de funcionalidades.
+Diagrama de componentes UML: el subsistema «subsystem» Abordo con 12 componentes alineados a los paquetes reales del backend, puertos, interfaces provistas y requeridas (ball-and-socket), conectores «delegate» hacia la frontera, los actores Visitante, Pasajero, Operador de empresa y Administrador, y los sistemas externos Pasarela de pagos y MongoDB Atlas. Incluye una nota de trazabilidad componente → HU/RF (RF_001 a RF_018).
 
 ![Vista funcional](https://raw.githubusercontent.com/abordo-pasto/abordo/main/diagramas/vista-funcional.png)
 

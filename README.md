@@ -90,7 +90,7 @@ Los diagramas se hicieron en Visual Paradigm y salen de las historias de usuario
 
 ![Vista de contexto](diagramas/vista-contexto.png)
 
-**Vista funcional:** interfaces que ofrece el sistema.
+**Vista funcional:** componentes del backend con puertos, interfaces provistas y requeridas, conectores «delegate», actores y sistemas externos, con trazabilidad a HU/RF.
 
 ![Vista funcional](diagramas/vista-funcional.png)
 
